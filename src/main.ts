@@ -9,6 +9,7 @@ const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN')
 const globSource = core.getInput('GLOB')
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX')
 const isDebug = core.getInput('DEBUG')
+const overwrite = core.getInput('OVERWRITE')
 const dropbox = new Dropbox({accessToken, fetch: fetch2})
 
 function uploadMuhFile(filePath: string): Promise<any> {
@@ -16,7 +17,12 @@ function uploadMuhFile(filePath: string): Promise<any> {
   const destinationPath = `${dropboxPathPrefix}${filePath}`
   if (isDebug) console.log('uploaded file to Dropbox at: ', destinationPath)
   return dropbox
-    .filesUpload({path: destinationPath, contents: file})
+    .filesUpload({
+      path: destinationPath,
+      contents: file,
+      mode: overwrite ? "overwrite":"add",
+      strict_conflict: false
+    })
     .then((response: any) => {
       if (isDebug) console.log(response)
       return response

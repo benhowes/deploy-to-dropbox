@@ -5,17 +5,17 @@ branding:
   icon: 'upload-cloud'
   color: 'black'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 inputs:
   DROPBOX_ACCESS_TOKEN:
     description: 'Value should be a secret that is set in your repository settings'
     required: true
 
-  GLOB: 
+  GLOB:
     description: 'Glob that you want to save to Dropbox e.g dir1/dir2/**/*.md or **/*.txt'
     required: true
-  
+
   DROPBOX_DESTINATION_PATH_PREFIX:
     description: 'The destination path prefix to save to in Dropbox. This will prepend the individual globs. Default value is "/"'
     required: false
@@ -25,3 +25,7 @@ inputs:
     description: "Enable debugging."
     required: false
 
+  OVERWRITE:
+    description: "Overwrite existing files."
+    required: false
+    default: false
