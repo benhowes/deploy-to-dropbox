@@ -21,11 +21,11 @@
     "@actions/core": "^1.9.1",
     "@actions/github": "^2.1.1",
     "@types/node": "^13.9.3",
-    "dropbox": "^4.0.30",
+    "dropbox": "^10.34.0",
     "glob": "^7.1.6"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.0",
+    "@vercel/ncc": "^0.38.1",
     "node-fetch": "^2.6.7",
     "typescript": "^3.8.3"
   }
